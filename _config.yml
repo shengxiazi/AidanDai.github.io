@@ -1,0 +1,37 @@
+# Site settings
+title: Aidan's Blog
+url: "http://AidanDai.github.io" 
+baseurl: 
+description: >
+  Stay hungry, stay foolish! - http://AidanDai.github.io
+
+# Your information
+#email: aidandai@126.com
+author: Aidan Dai
+avatar: "/asset/images/aidan.jpg"
+profile: Stay hungry, stay foolish!
+#twitter_username: twitter_username
+github_username:  AidanDai
+
+# Comment Service (Disqus or 多说)
+#  choose one and un-comment the line to active it
+#disqus_shortname: xxx   # get one: https://disqus.com/admin/signup/
+duoshuo_shortname: aidandai  
+# get one: http://duoshuo.com/create-site/
+
+permalink: /archives/:title
+gems:
+ - jekyll-paginate
+ - jekyll-gist
+ - jemoji
+
+# Build settings
+paginate: 5
+paginate_path: "page:num"
+
+highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

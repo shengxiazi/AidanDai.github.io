@@ -1,0 +1,19 @@
+---
+layout: default
+title: 作品
+permalink: /work/
+public: false
+---
+
+<div class="home">
+	<h1 class="page-heading">Works</h1>
+	<ul class="post-list">
+		<h2 class="category" id="{{ word }}">{{ word | upcase }}</h2>
+			<ul>
+				<li>
+				<span>{{ post.date | date: "%b %d" }}</span> » 
+				<a href="{{ site.baseurl}}{{ post.url }}" target="_self">{{ post.title }}</a>
+				</li>
+			</ul>
+  	</ul>
+</div>
