@@ -136,7 +136,7 @@ CSS的解析大概是下面这个样子（下面主要说的是Gecko也就是Fir
 
 下面是一个打开Wikipedia时的Layout/reflow的视频（注：HTML在初始化的时候也会做一次reflow，叫 intial reflow），你可以感受一下：
 
-http://v.youku.com/v_show/id_XMzI5MDg0OTA0.html
+**视频请查看原文中的！**
 
 Reflow的成本比Repaint的成本高得多的多。DOM Tree里的每个结点都会有reflow方法，一个结点的reflow很有可能导致子结点，甚至父点以及同级结点的reflow。**在一些高性能的电脑上也许还没什么，但是如果reflow发生在手机上，那么这个过程是非常痛苦和耗电的**。
 
