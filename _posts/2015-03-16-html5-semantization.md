@@ -101,6 +101,7 @@ example:
   <p>In this section, we discuss the famous mongolian gerbils.
      ...this section continues...
 </section>
+```
 
 <pre>
 1. Forest elephants
@@ -108,7 +109,7 @@ example:
 2. Mongolian gerbils
 </pre>
 
->注意标题元素的级别（例子中的第一个顶层节段的 &lt;h1&gt;，子节段中的&lt;h2&gt; 和第二个顶层节段中的&lt;h3&gt;）并不重要。（任何级别可以用作显示定义的节段的标题，虽然这种做法并不推荐。）
+注意标题元素的级别（例子中的第一个顶层节段的 &lt;h1&gt;，子节段中的&lt;h2&gt; 和第二个顶层节段中的&lt;h3&gt;）并不重要。（任何级别可以用作显示定义的节段的标题，虽然这种做法并不推荐。）
 
 ### 隐式分节
 
@@ -158,7 +159,9 @@ example:
   <section>
     <h2>Habitat</h2>
     <p>Forest elephants do not live in trees but among them. Let's
-       look what scientists are saying in "<cite>The Forest Elephant in Borneo</cite>":</p>
+       look what scientists are saying in "
+       <cite>The Forest Elephant in Borneo</cite>
+       ":</p>
     <blockquote>
        <h1>Borneo</h1>
        <p>The forest element lives in Borneo...</p>
@@ -203,7 +206,9 @@ section, article, aside, footer, header, nav, hgroup {
 }
 ```
 
-```javascript
+html结构总插入以下代码：
+
+```html
 <!--[if lt IE 9]>
   <script>
     document.createElement("header" );
@@ -216,9 +221,11 @@ section, article, aside, footer, header, nav, hgroup {
     document.createElement("time"   );
   </script>
   <noscript>
-     <strong>Warning !</strong>
-     Because your browser does not support HTML5, some elements are simulated using JScript.
-     Unfortunately your browser has disabled scripting. Please enable it in order to display this page.
+     Warning !Because your browser does not 
+     support HTML5, some elements are simulated 
+     using JScript. Unfortunately your browser 
+     has disabled scripting. Please enable it 
+     in order to display this page.
   </noscript>
 <![endif]-->
 ```

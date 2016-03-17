@@ -28,15 +28,15 @@ layout: default
   <!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous" target="_self">上一篇</a>
+    <a href="{{ paginator.previous_page_path }}" class="previous" target="_self">上一页</a>
   {% else %}
-    <span class="previous">上一篇</span>
+    <span class="previous">上一页</span>
   {% endif %}
   <span class="page_number ">{{ paginator.page }}/{{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next" target="_self">下一篇</a>
+    <a href="{{ paginator.next_page_path }}" class="next" target="_self">下一页</a>
   {% else %}
-    <span class="next ">下一篇</span>
+    <span class="next ">下一页</span>
   {% endif %}
 </div>
 
