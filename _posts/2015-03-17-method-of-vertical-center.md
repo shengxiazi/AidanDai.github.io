@@ -148,3 +148,9 @@ example:
 **参考博客：**
 
 [渔歌：CSS实现垂直居中的常用方法](http://www.cnblogs.com/yugege/p/5246652.html)
+
+**关于flex的学习**
+
+[阮一峰：Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+[阮一峰：Flex 布局教程：实例篇](http://www.cnblogs.com/yugege/p/5246652.html)
