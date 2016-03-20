@@ -11,4 +11,13 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
   <base target="_blank">
+  <style type="text/css">
+    .ballot_box_with_check:before {
+      content: "\2611\ ";
+    }
+
+    .ballot_box:before {
+      content: "\2610\ ";
+    }
+  </style>
 </head>

@@ -9,7 +9,7 @@ layout: default
   </header>
 
   <article class="post-content">
-    {{ content }}
+    {{ content | replace: '<p>[ ]', '<p><span class="ballot_box"></span>' | replace: '<p>[x]', '<p><span class="ballot_box_with_check"></span>' | replace: '<li>[ ]', '<li><span class="ballot_box"></span>' | replace: '<li>[x]', '<li><span class="ballot_box_with_check"></span>'  }}
   </article>
   
   {% include comment.html %}
