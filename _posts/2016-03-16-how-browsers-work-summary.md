@@ -4,6 +4,8 @@ title:  "现代浏览器的工作原理简介"
 date:   2016-03-16
 categories: browser
 tags: browser html css javascript DOM web
+keyword: "browser, html, css, javascript, DOM, web"
+author: Aidan Dai
 ---
 
 看到这个标题大家一定会想到这篇神文[《How Browsers Work》](http://taligarsiel.com/Projects/howbrowserswork1.htm)，这篇文章把浏览器的很多细节讲得很细，而且也被[翻译成了中文](http://kb.cnblogs.com/page/178445/)。为什么我还想写一篇呢？因为两个原因，

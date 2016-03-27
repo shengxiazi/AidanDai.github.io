@@ -4,6 +4,8 @@ title:  "大行其道-JavaScript模块化开发(一)"
 date:   2016-03-25
 categories: javascript
 tags: javascript module
+keyword: "ljavascript module, 模块化开发"
+author: Aidan Dai
 ---
 
 对于那些正在构建大型应用程序，而对JavaScript不甚了解的开发者而言，他们最初必须要面对的挑战之一就是如何着手组织代码。起初只要在&lt;script&gt;标记之间嵌入几百行代码就能跑起来，不过很快代码就会变得一塌糊涂。而问题是，JavaScript没有为组织代码提供任何明显帮助。从字面上看，C++有#include，php也有include、require——而JavaScript一无所有。这迫使JavaScript编写者试验不同的约定，并使用现有的语言创建了一些切实可行的方法来组织大型JavaScript应用程序。从而实现团队协作、模块复用、单元测试等等一系列复杂的需求。

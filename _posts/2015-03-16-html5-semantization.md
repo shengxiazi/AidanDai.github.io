@@ -4,6 +4,8 @@ title:  "HTML5的文档节段和纲要"
 date:   2016-03-15
 categories: html
 tags: html5
+keyword: "html5,HTML5的文档节段,纲要"
+author: Aidan Dai
 ---
 
 ## HTML4的文档结构

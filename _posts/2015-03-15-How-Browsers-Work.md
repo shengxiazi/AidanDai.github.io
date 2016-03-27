@@ -4,6 +4,8 @@ title:  "现代浏览器的工作原理"
 date:   2016-03-15
 categories: browser
 tags: browser html css javascript DOM web
+keyword: "browser,html, css, javascript, DOM, web"
+author: Aidan Dai
 ---
 
 浏览器可以被认为是使用最广泛的软件，本文将介绍浏览器的工 作原理，我们将看到，从你在地址栏输入google.com到你看到google主页过程中都发生了什么。

@@ -4,6 +4,8 @@ title:  "margin collapsing 和 BFC"
 date:   2016-03-17
 categories: css
 tags: css
+keyword: "margin collapsing, BFC"
+author: Aidan Dai
 ---
 
 BFC 已经是一个耳听熟闻的词语了，网上有许多关于 BFC 的文章，介绍了如何触发 BFC 以及 BFC 的一些用处（如清浮动，防止 margin 重叠等）。虽然我知道如何利用 BFC 解决这些问题，但当别人问我 BFC 是什么，我还是不能很有底气地解释清楚。于是这两天仔细阅读了许多文章并查阅W3C标准来全面地理解BFC。

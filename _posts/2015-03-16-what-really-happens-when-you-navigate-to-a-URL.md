@@ -5,6 +5,8 @@ title:  "当你在浏览器地址栏输入一个URL后回车，将会发生的�
 date:   2016-03-16
 categories: browser
 tags: browser http
+keyword: "browser, http"
+author: Aidan Dai
 ---
 
 作为一个软件开发者，你一定会对网络应用如何工作有一个完整的层次化的认知，同样这里也包括这些应用所用到的技术：像浏览器，HTTP，HTML，网络服务器，需求处理等等。
