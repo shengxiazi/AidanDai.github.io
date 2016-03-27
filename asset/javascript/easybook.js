@@ -180,3 +180,21 @@ function RealLoad(){
 }
 
 RealLoad();
+
+/**
+ * nofollow
+ * author: Aidan Dai
+ */
+(function(){
+    if(document.getElementsByTagName){
+        var articles = document.getElementsByTagName("article"),
+            len = articles.length;
+        if(len > 0){
+            var a = articles[0].getElementsByTagName("a"),
+                a_len = a.length;
+            for(var i=0; i<a_len; i++){
+                a[i].setAttribute("rel", "nofollow");
+            }
+        }
+    }
+})();

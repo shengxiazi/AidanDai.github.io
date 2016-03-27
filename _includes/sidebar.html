@@ -4,7 +4,7 @@
   <p>{{ site.profile }}</p>
   <p class="contact">
     {% if site.github_username %}
-    <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a>
+    <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="nofollow">GitHub</a>
     {% endif %}
     {% if site.twitter_username %}
     <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank">Twitter</a>
@@ -18,7 +18,7 @@
 <div class="col-box">
   <div class="col-box-title">最近文章：</div>
   <ul class="post-list">
-    {% for post in site.posts limit:5 %}
+    {% for post in site.posts limit:10 %}
       <li><a class="post-link" href="{{ post.url | prepend: site.baseurl }}" target="_self">{{ post.title }}</a></li>
     {% endfor %}
   </ul>

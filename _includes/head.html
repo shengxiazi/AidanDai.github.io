@@ -1,11 +1,20 @@
 <head>
+  <title>{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta name="keywords" content="{% if page.keyword %}{{ page.keyword | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.keyword }}{% endif %}">
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  
+  <meta name="author" content="Aidan Dai, aidandai@126.com, http://www.aidandai.com/">
+  <meta property="og:url" content="http://www.aidandai.com">
+  <meta property="og:site_name" content="Aidan's Blog">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="http://www.aidandai.com/asset/images/aidan.jpg">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
   <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ "/asset/style/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
@@ -15,9 +24,40 @@
     .ballot_box_with_check:before {
       content: "\2611\ ";
     }
-
     .ballot_box:before {
       content: "\2610\ ";
     }
+    /*滚动条宽度*/  
+    .post-toc ::-webkit-scrollbar,  
+    .highlighter-rouge ::-webkit-scrollbar {  
+        width: 8px;  
+    }    
+    /* 轨道样式 */  
+    .post-toc ::-webkit-scrollbar-track,
+    .highlighter-rouge ::-webkit-scrollbar-track{  
+      
+    }  
+    /* Handle样式 */  
+    .post-toc ::-webkit-scrollbar-thumb,
+    .highlighter-rouge ::-webkit-scrollbar-thumb {  
+        border-radius: 10px;  
+        background: rgba(0,0,0,0.2);   
+    }   
+    /*当前窗口未激活的情况下*/  
+    .post-toc ::-webkit-scrollbar-thumb:window-inactive,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:window-inactive {  
+        background: rgba(0,0,0,0.1);   
+    }  
+    /*hover到滚动条上*/  
+    .post-toc ::-webkit-scrollbar-thumb:vertical:hover,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:vertical:hover{  
+        background-color: rgba(0,0,0,0.3);  
+    }  
+    /*滚动条按下*/  
+    .post-toc ::-webkit-scrollbar-thumb:vertical:active,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:vertical:active{  
+        background-color: rgba(0,0,0,0.7);  
+    }  
+
   </style>
 </head>
