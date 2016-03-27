@@ -23,9 +23,9 @@ public: true
 			<li>
 				Github: <a href="https://github.com/AidanDai" target="_blank" rel="nofollow">Aidan Dai</a>
 			</li>
-			<li>
+			<!-- <li>
 				领英: <a href="http://www.linkedin.com/in/aidandai" target="_blank" rel="nofollow">文桥</a>
-			</li>
+			</li> -->
 			<li>
 				微博: <a href="http://weibo.com/u/1784631140" target="_blank" rel="nofollow">webAidan</a>
 			</li>
