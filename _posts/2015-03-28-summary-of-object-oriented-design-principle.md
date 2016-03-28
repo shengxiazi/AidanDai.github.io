@@ -62,7 +62,7 @@ author: Aidan Dai
 
  ![Customer Relationship  Management](/asset/images/article/CRM-uml-good.jpg)
 
- ## 二、开闭原则
+## 二、开闭原则
 
 开闭原则是面向对象的可复用设计的第一块基石，它是最重要的面向对象设计原则。开闭原则由Bertrand  Meyer于1988年提出，其定义如下：
 
