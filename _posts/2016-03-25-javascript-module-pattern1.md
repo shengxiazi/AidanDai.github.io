@@ -4,7 +4,7 @@ title:  "大行其道-JavaScript模块化开发(一)"
 date:   2016-03-25
 categories: javascript
 tags: javascript module
-keyword: "ljavascript module, 模块化开发"
+keyword: "javascript module, 模块化开发"
 author: Aidan Dai
 ---
 

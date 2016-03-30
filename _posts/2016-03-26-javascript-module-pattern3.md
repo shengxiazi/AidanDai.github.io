@@ -4,7 +4,7 @@ title:  "大行其道-JavaScript模块化开发(requirejs)"
 date:   2016-03-26
 categories: javascript
 tags: javascript module requirejs
-keyword: "ljavascript module, 模块化开发, requirejs"
+keyword: "javascript module, 模块化开发, requirejs"
 author: Aidan Dai
 ---
 

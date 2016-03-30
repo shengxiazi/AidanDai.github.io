@@ -4,7 +4,7 @@ title:  "大行其道-JavaScript模块化开发(AMD)"
 date:   2016-03-26
 categories: javascript
 tags: 转载 javascript module AMD
-keyword: "ljavascript module, 模块化开发, AMD"
+keyword: "javascript module, 模块化开发, AMD"
 author: Aidan Dai
 ---
 
