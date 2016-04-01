@@ -1,11 +1,11 @@
 # Site settings
 title: Aidan's Blog
-url: "http://AidanDai.github.io" 
+url: "http://www.aidandai.com" 
 baseurl:
 keyword: >
-  文桥的个人博客,Aidan's blog,文桥,Aidan Dai, Aidan, Aidan Dai's blog,Aidan的自留地,专注前端,文桥的个人网站,Aidan's website 
+  文桥的个人博客,文桥,Aidan Dai, AidanDai, Aidan,Aidan的自留地,文桥的个人网站 
 description: >
-  Stay hungry, stay foolish! - http://AidanDai.github.io(专注前端，记录前端路上的点点滴滴！)
+  Stay hungry, stay foolish! - http://www.aidandai.com(专注前端，记录前端路上的点点滴滴！)
 
 # Your information
 #email: aidandai@126.com
