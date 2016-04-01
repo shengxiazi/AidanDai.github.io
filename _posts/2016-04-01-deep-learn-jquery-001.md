@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "jQuery 框架学习 - 自执行匿名函数"
+title:  "jQuery 源码研究 - 自执行匿名函数"
 date:   2016-03-30
 categories: jQuery
 tags: javascript jQuery
-keyword: "javascript, jQuery, jQuery 框架学习, javascript 自执行匿名函数"
+keyword: "javascript, jQuery, jQuery 源码研究, javascript 自执行匿名函数"
 author: Aidan Dai
 ---
 
