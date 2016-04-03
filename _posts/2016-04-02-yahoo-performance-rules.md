@@ -7,6 +7,7 @@ tags: 前端优化
 keyword: "web前端优化，前端性能优化，yahoo前端性能团队总结的35条黄金定律"
 author: Aidan Dai
 ---
+
 Yahoo!的 Exceptional Performance团队为改善 Web性能带来最佳实践。他们为此进行了一系列的实验、开发了各种工具、写了大量的文章和博客并在各种会议上参与探讨。最佳实践的核心就是旨在提高网站性能。原版猛戳：[Best Practices for Speeding Up Your Web Site](http://developer.yahoo.com/performance/rules.html)，Excetional Performance 团队总结出了一系列可以提高网站速度的方法。可以分为 7大类 35条。包括内容 、服务器 、 CSS 、 JavaScript 、Cookie 、图片 、移动应用 ，七部分。今天来好好拜读下！
 
 ## 网页内容
@@ -315,24 +316,36 @@ body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}
 
 用来帮助我们做精简的工具很多，主要可以参考如下，
 
-<p>JS compressors:</p>
-<ul>
-<li><a href="http://dean.edwards.name/packer/">Packer</a></li>
-<li><a href="http://crockford.com/javascript/jsmin">JSMin</a></li>
-<li><a href="http://code.google.com/intl/pl/closure/compiler/">Closure compiler</a></li>
-<li><a href="http://developer.yahoo.com/yui/compressor/">YUICompressor</a>&nbsp;(also does CSS)</li>
-<li><a href="http://ajaxmin.codeplex.com/">AjaxMin</a>&nbsp;(also does CSS)</li>
-</ul>
-<p>CSS compressors:</p>
-<ul>
-<li><a href="http://csstidy.sourceforge.net/">CSSTidy</a></li>
-<li><a href="http://code.google.com/p/minify/">Minify</a></li>
-<li><a href="http://developer.yahoo.com/yui/compressor/">YUICompressor</a>&nbsp;(also does JS)</li>
-<li><a href="http://ajaxmin.codeplex.com/">AjaxMin</a>&nbsp;(also does JS)</li>
-<li><a href="http://www.csscompressor.com/">CSSCompressor</a></li>
-</ul>
-<p>与VS集成比较好的工具如下.</p>
-<ul>
+JS compressors:
+
+[Packer](http://dean.edwards.name/packer/)
+
+[JSMin](http://crockford.com/javascript/jsmin)
+
+[Closure compiler](http://code.google.com/intl/pl/closure/compiler/)
+
+[YUICompressor](http://developer.yahoo.com/yui/compressor/)&nbsp;(also does CSS)
+
+[AjaxMin](http://ajaxmin.codeplex.com/)&nbsp;(also does CSS)
+
+CSS compressors:
+
+[CSSTidy](http://csstidy.sourceforge.net/)
+
+[Minify](http://code.google.com/p/minify/)
+
+[YUICompressor](http://developer.yahoo.com/yui/compressor/)&nbsp;(also does JS)
+
+[AjaxMin](http://ajaxmin.codeplex.com/)&nbsp;(also does JS)
+
+[CSSCompressor](http://www.csscompressor.com/)
+
+与VS集成比较好的工具如下.
+
+[YUICompressor](http://yuicompressor.codeplex.com/) - 编译集成，包含在NuGet.
+
+[AjaxMin](http://ajaxmin.codeplex.com/)  - 编译集成
+
 
 ### 去除重复脚本
 
