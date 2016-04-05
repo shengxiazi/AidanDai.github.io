@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "jQuery 源码研究 - 自执行匿名函数"
-date:   2016-03-30
+date:   2016-04-01
 categories: jQuery
 tags: javascript jQuery
 keyword: "javascript, jQuery, jQuery 源码研究, javascript 自执行匿名函数"

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 面向对象设计原则总结"
+title:  "面向对象设计原则总结"
 date:   2016-03-28
 categories: 设计模式
 tags: 设计模式
