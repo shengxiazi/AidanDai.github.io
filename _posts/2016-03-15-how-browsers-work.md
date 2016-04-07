@@ -373,7 +373,7 @@ _ 如果这些都不行，就闭合当前标签直到可以添加该元素。
 
 代码：
 
-```C
+```c
 if (t->isCloseTag(brTag) && m_document->inCompatMode()) {
 	reportError(MalformedBRError);
 	t->beginTag = true;
@@ -397,7 +397,7 @@ webkit将会将嵌套的表格变为两个兄弟表格：
 
 代码：
 
-```C
+```c
 if (m_inStrayTableContent && localName == tableTag)
 popBlock(tableTag);
 ```
@@ -410,7 +410,7 @@ webkit使用堆栈存放当前的元素内容，它将从外部表格的堆栈�
 
 代码：
 
-```C
+```c
 if (!m_currentFormElement) {
 	m_currentFormElement = new HTMLFormElement(formTag,m_document);
 }
@@ -420,7 +420,7 @@ if (!m_currentFormElement) {
 
 www.liceo.edu.mx是一个由嵌套层次的站点的例子，最多只允许20个相同类型的标签嵌套，多出来的将被忽略。
 
-```C
+```c
 bool HTMLParser::allowNestedRedundantTag(const AtomicString& tagName)
 {
 	unsigned i = 0;
@@ -439,7 +439,7 @@ bool HTMLParser::allowNestedRedundantTag(const AtomicString& tagName)
 
 代码：
 
-```C
+```c
 if (t->tagName == htmlTag || t->tagName == bodyTag )
 return;
 ```
@@ -536,7 +536,7 @@ Firefox将渲染树中的元素称为frames，WebKit则用renderer或渲染对�
 
 RenderObject是Webkit的渲染对象基类，它的定义如下：
 
-```C
+```c
 class RenderObject{
 	virtual void layout();
 	virtual void paint(PaintInfo);
@@ -549,7 +549,7 @@ class RenderObject{
 
 每个渲染对象用一个和该节点的css盒模型相对应的矩形区域来表示，正如css2所描述的那样，它包含诸如宽、高和位置之类的几何信息。盒模型的类型受该节点相关的display样式属性的影响（参考样式计算章节）。下面的webkit代码说明了如何根据display属性决定某个节点创建何种类型的渲染对象。
 
-```C
+```c
 RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
 {
 	Document* doc = node->document();
@@ -839,7 +839,7 @@ li.red.level{}/* a=0 b=0 c=2 d=1 -> specificity = 0,0,2,1 */
 
 规则匹配后，需要根据级联顺序对规则进行排序，WebKit先将小列表用冒泡排序，再将它们合并为一个大列表，WebKit通过为规则复写“>”操作来执行排序：
 
-```C
+```c
 static bool operator >(CSSRuleData& r1, CSSRuleData& r2)
 {
 	int spec1 = r1.selector()->specificity();
@@ -982,7 +982,7 @@ Firefox优化了这个过程，它不添加会被隐藏的元素，比如元素�
 
 浏览器主线程是一个事件循环，它被设计为无限循环以保持执行过程的可用，等待事件（例如layout和paint事件）并执行它们。下面是Firefox的主要事件循环代码。
 
-```C
+```c
 while (!mExiting)
 
 NS_ProcessNextEvent(thread);
