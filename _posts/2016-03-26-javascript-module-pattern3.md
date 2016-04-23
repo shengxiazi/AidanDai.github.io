@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "大行其道-JavaScript模块化开发(requirejs)"
+title:  "【笔记】大行其道-JavaScript模块化开发(requirejs)"
 date:   2016-03-26
 categories: javascript
 tags: javascript module requirejs
@@ -12,11 +12,11 @@ author: Aidan Dai
 
 RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用RequireJS必将使您的前端代码质量得以提升。
 
-## requirejs能带来什么好处?
+## 一、requirejs能带来什么好处?
 
 简言之使用requirejs有以下有点：
 
-### 防止js加载阻塞页面渲染（异步加载）
+### 1、防止js加载阻塞页面渲染（异步加载）
 
 先看下面这个例子：
 
@@ -51,7 +51,7 @@ RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最�
 
 把这段小demo复制到你的编辑器运行下看下吧！（看看第一次打开是什么情况）
 
-### 使用程序调用的方式加载js，防出现如下丑陋的场景
+### 2、使用程序调用的方式加载js，防出现如下丑陋的场景
 
 最早的时候，所有Javascript代码都写在一个文件里面，只要加载这一个文件就够了。后来，代码越来越多，一个文件不够了，必须分成多个文件，依次加载。下面的网页代码，相信很多人都见过。
 
@@ -79,13 +79,13 @@ require.js的诞生，就是为了解决这两个问题：
 
 （2）管理模块之间的依赖性，便于代码的编写和维护。
 
-### 团队协作、模块复用、单元测试等
+### 3、团队协作、模块复用、单元测试等
 
 这个大家在平时自己体会吧！
 
-## 开始使用requirejs
+## 二、开始使用requirejs
 
-### 加载requirejs
+### 1、加载requirejs
 
 **注**：这里所说的路径都是指定到文件，但是不需要js后缀；路径都是相对requirejs的真时路径
 
@@ -101,7 +101,7 @@ require.js的诞生，就是为了解决这两个问题：
 
 async属性表明这个文件需要异步加载，避免网页失去响应。IE不支持这个属性，只支持defer，所以把defer也写上。
 
-### 加载我们自己的代码
+### 2、加载我们自己的代码
 
 ```Javascript
 <script type="text/javascript" src="path of requirejs" data-main="path of myself javascript"></script>
@@ -109,11 +109,11 @@ async属性表明这个文件需要异步加载，避免网页失去响应。IE�
 
 data\-main属性的作用是，指定网页程序的主模块。在上例中，就是js目录下面的main.js，这个文件会第一个被require.js加载。由于require.js默认的文件后缀名是js，所以可以把main.js简写成main。
 
-### 写个简单、完整的主模块
+### 3、写个简单、完整的主模块
 
 假定主模块依赖jquery、underscore和backbone这三个模块，main.js就可以这样写：
 
-#### 加载模块
+#### （1）加载模块
 
 ```Javascript
 //main.js
@@ -124,7 +124,7 @@ require(['jquery', 'underscore', 'backbone'], function ($, _, Backbone){
 
 require.js会先加载jQuery、underscore和backbone，然后再运行回调函数。主模块的代码就写在回调函数中。
 
-#### 加载模块配置
+#### （2）加载模块配置
 
 使用require.config()方法，我们可以对模块的加载行为进行自定义。require.config()就写在主模块（main.js）的头部。参数就是一个对象，这个对象的paths属性指定各个模块的加载路径。
 
@@ -162,7 +162,7 @@ require(['jquery', 'underscore', 'backbone'], function ($, _, Backbone){
 
 require.js要求，每个模块是一个单独的js文件。这样的话，如果加载多个模块，就会发出多次HTTP请求，会影响网页的加载速度。因此，require.js提供了一个[优化工具](http://requirejs.org/docs/optimization.html)，当模块部署完毕以后，可以用这个工具将多个模块合并在一个文件中，减少HTTP请求数。
 
-## AMD模块的写法
+## 三、AMD模块的写法
 
 require.js加载的模块，采用AMD规范。也就是说，模块必须按照AMD的规定来写。
 
@@ -206,7 +206,7 @@ define(['myLib'], function(myLib){
 
 当require()函数加载上面这个模块的时候，就会先加载myLib.js文件。
 
-## 加载非规范的模块
+## 四、加载非规范的模块
 
 理论上，require.js加载的模块，必须是按照AMD规范、用define()函数定义的模块。但是实际上，虽然已经有一部分流行的函数库（比如jQuery）符合AMD规范，更多的库并不符合。那么，require.js是否能够加载非规范的模块呢？
 
@@ -245,7 +245,7 @@ require.config({
 });
 ```
 
-## require.js插件
+## 五、require.js插件
 
 require.js还提供一系列[插件](https://github.com/requirejs/requirejs/wiki/Plugins)，实现一些特定的功能。
 

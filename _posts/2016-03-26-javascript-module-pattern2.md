@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "大行其道-JavaScript模块化开发(AMD)"
+title:  "【笔记】大行其道-JavaScript模块化开发(AMD)"
 date:   2016-03-26
 categories: javascript
 tags: 转载 javascript module AMD
@@ -18,7 +18,7 @@ author: Aidan Dai
 
 目前，通行的Javascript模块规范共有两种：[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)和[AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)。我主要介绍AMD，但是要先从CommonJS讲起。
 
-## CommonJS
+## 一、CommonJS
 
 2009年，美国程序员Ryan Dahl创造了[node.js](https://nodejs.org/en/)项目，将javascript语言用于服务器端编程。
 
@@ -35,7 +35,7 @@ math.add(2,3);  //调用
 
 因为这个系列主要针对浏览器编程，不涉及node.js，所以对CommonJS就不多做介绍了。我们在这里只要知道，require()用于加载模块就行了。
 
-## 浏览器环境
+## 二、浏览器环境
 
 有了服务器端模块以后，很自然地，大家就想要客户端模块。而且最好两者能够兼容，一个模块不用修改，在服务器和浏览器都可以运行。
 
@@ -53,7 +53,7 @@ math.add(2,3);  //调用
 
 因此，浏览器端的模块，不能采用"同步加载"（synchronous），只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。
 
-## AMD
+## 三、AMD
 
 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)是"Asynchronous Module Definition"的缩写，意思就是"异步模块定义"。它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
 

@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "深入浅出 UML 类图"
+title:  "【笔记】深入浅出 UML 类图"
 date:   2016-03-30
-categories: 设计模式
-tags: 转载 设计模式 UML
-keyword: "转载, 设计模式, UML"
+categories: UML
+tags: UML
+keyword: "UML"
 author: Aidan Dai
 ---
 
@@ -360,7 +360,7 @@ public class Car implements Vehicle {
 
 ## 三、实例分析
 
-### 实例分析1——登录模块
+### 1、实例分析1——登录模块
 
 某基于C/S的即时聊天系统登录模块功能描述如下：
 
@@ -393,7 +393,7 @@ public class Car implements Vehicle {
 |IUserDAO接口的findUserByAccAndPwd()方法|	业务方法声明，通过用户账号和密码在数据库中查询用户信息，判断该用户身份的合法性|
 |UserDAO类的findUserByAccAndPwd()方法|	业务方法实现，实现在IUserDAO接口中声明的数据访问方法|
 
-### 实例分析2——注册模块
+### 2、实例分析2——注册模块
 
 某基于Java语言的C/S软件需要提供注册功能，该功能简要描述如下：
 
@@ -422,6 +422,6 @@ public class Car implements Vehicle {
 ![uml-comment](/asset/images/article/uml-comment.jpg)
 
 
-**注：**
+## 四、原文
 
 原文：[深入浅出UML类图](http://www.uml.org.cn/oobject/201211231.asp)

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+	<title>event flow</title>
+	<style type="text/css">
+		* {
+		  box-sizing: border-box;
+		  margin: 0;
+		  padding: 20px;
+		  transition: background 800ms;
+		}
+
+		html {
+		  height: 100%;
+		  background: hsl(193, 66%, 55%);
+		  font: bold 40px helvetica, sans-serif;
+		  color: red;
+		}
+
+		body {
+		  height: 100%;
+		  background: hsl(193, 66%, 65%);
+		}
+
+		div {
+		  height: 100%;
+		  background: hsl(193, 66%, 75%);
+		}
+
+		ul {
+		  height: 100%;
+		  list-style: none;
+		  background: hsl(193, 66%, 85%);
+		}
+
+		li {
+		  height: 100%;
+		  background: hsl(193, 66%, 95%);
+		}
+
+		.highlight {
+		  background: red;
+		}
+	</style>
+</head>
+<body>
+  <div class="">
+    <ul>
+      <li>Click on a layer to watch the event move through the DOM tree.</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+  		var html = document.documentElement;
+		var body = document.body;
+		var div = body.querySelector('div');
+		var ul = body.querySelector('ul');
+		var li = body.querySelector('li');
+		var pause = 200;
+
+		// Capture
+		html.addEventListener('click', callback, true);
+		body.addEventListener('click', callback, true);
+		div.addEventListener('click', callback, true);
+		html.addEventListener('click', callback, true);
+		ul.addEventListener('click', callback, true);
+		li.addEventListener('click', callback, true);
+
+		// Bubble
+		html.addEventListener('click', callback, false);
+		body.addEventListener('click', callback, false);
+		div.addEventListener('click', callback, false);
+		html.addEventListener('click', callback, false);
+		ul.addEventListener('click', callback, false);
+		li.addEventListener('click', callback, false);
+
+		function callback(event) {
+		  //事件传递延迟 pause ms
+		  var ms = event.timeout = (event.timeout + pause) || 0;
+		  var target = event.currentTarget;
+
+		  setTimeout(function() {
+		    target.classList.add('highlight');
+		    setTimeout(function() {
+		      target.classList.remove('highlight');
+		    }, pause);
+		  }, ms);
+		}
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "前端性能优化 - yahoo前端性能团队总结的35条黄金定律"
+title:  "【笔记】前端性能优化 - yahoo前端性能团队总结的35条黄金定律"
 date: 2016-04-02
 categories: web
 tags: 前端优化
@@ -10,9 +10,9 @@ author: Aidan Dai
 
 Yahoo!的 Exceptional Performance团队为改善 Web性能带来最佳实践。他们为此进行了一系列的实验、开发了各种工具、写了大量的文章和博客并在各种会议上参与探讨。最佳实践的核心就是旨在提高网站性能。原版猛戳：[Best Practices for Speeding Up Your Web Site](http://developer.yahoo.com/performance/rules.html)，Excetional Performance 团队总结出了一系列可以提高网站速度的方法。可以分为 7大类 35条。包括内容 、服务器 、 CSS 、 JavaScript 、Cookie 、图片 、移动应用 ，七部分。今天来好好拜读下！
 
-## 网页内容
+## 一、网页内容
 
-### 减少http请求次数
+### 1、减少http请求次数
 
 80%的响应时间花在下载网页内容(images, stylesheets, javascripts, scripts, flash等)。减少请求次数是缩短响应时间的关键！可以通过简化页面设计来减少请求次数，但页面内容较多可以采用以下技巧。
 
@@ -38,13 +38,13 @@ P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC') no-repeat scroll left top;
 }
 ```
 
-### 减少DNS查询次数
+### 2、减少DNS查询次数
 
 DNS查询也消耗响应时间，如果我们的网页内容来自各个不同的domain (比如嵌入了开放广告，引用了外部图片或脚本)，那么客户端首次解析这些domain也需要消耗一定的时间。DNS查询结果缓存在本地系统和浏览器中一段时间，所以DNS查询一般是对首次访问响应速度有所影响。下面是我清空本地dns后访问博客园主页dns的查询请求。看少去还不少哦。
 
 ![dns-request](/asset/images/article/dns-request.png)
 
-### 避免页面跳转
+### 3、避免页面跳转
 
 当客户端收到服务器的跳转回复时，客户端再次根据服务器回复中的location指定的地址再次发送请求，例如以下跳转回复。
 
@@ -55,7 +55,7 @@ Content-Type: text/html
 ```
 当客户端遇到这种回复的时候，用户只能等待客户端再次发送请求，有的网站甚至会一直跳n次，跳到他想带你去的地方…当然在这个时候用户看不到任何页面内容，只有浏览器的进度条一直在刷新。
 
-### 缓存Ajax
+### 4、缓存Ajax
 
 Ajax可以帮助我们异步的下载网页内容，但是有些网页内容即使是异步的，用户还是在等待它的返回结果，例如ajax的返回是用户联系人的下拉列表。所以我们还是要注意尽量应用以下规则提高ajax的响应速度。
 
@@ -71,13 +71,13 @@ Ajax可以帮助我们异步的下载网页内容，但是有些网页内容即�
 
 - 配置Etags
 
-### 延迟加载
+### 5、延迟加载
 
 这里讨论延迟加载需要我们知道我们的**网页最初加载需要的最小内容集**是什么。剩下的内容就可以推到延迟加载的集合中。
 
 Javascript是典型的可以延迟加载内容。一个比较激进的做法是开发网页时先确保网页在没有Javascript的时候也可以基本工作，然后通过延迟加载脚本来完成一些高级的功能。
 
-### 提前加载
+### 6、提前加载
 
 与延迟加载目的相反，提前加载的是为了提前加载接下来网页中访问的资源，下面是提前加载的类型
 
@@ -89,7 +89,7 @@ Javascript是典型的可以延迟加载内容。一个比较激进的做法是�
 
 有预期的的加载：这种情况一般发生在网页重新设计时，由于用户经常访问旧网页，本地对旧的网页内容缓存充分从而显得旧网页速度很快，而新的网页内容却没有缓存，设计者可以在旧网页的内容中预先加载一些新网页中可能用到的内容，这样新的网页就会生下来一些需要下载的资源。
 
-### 减少DOM元素数量
+### 7、减少DOM元素数量
 
 网页中元素过多对网页的加载和脚本的执行都是沉重的负担，500个元素和5000个元素在加载速度上会有很大差别。
 
@@ -103,13 +103,13 @@ document.getElementsByTagName('*').length
 
 ![yahoo-element-length](/asset/images/article/yahoo-element-length.png)
 
-### 根据域名划分内容
+### 8、根据域名划分内容
 
 浏览器一般对同一个域的下载连接数有所限制，按照域名划分下载内容可以浏览器增大并行下载连接，但是注意控制域名使用在2-4个之间，不然dns查询也是个问题。
 
 一般网站规划会将静态资源放在类似于static.example.com，动态内容放在www.example.com上。这样做还有一个好处是可以在静态的域名上避免使用cookie。后面我们会在cookie的规则中提到。   
 
-### 减少iframe数量
+### 9、减少iframe数量
 
 使用iframe要注意理解iframe的优缺点
 
@@ -125,19 +125,19 @@ document.getElementsByTagName('*').length
 - 会阻止页面加载
 - 没有语义
 
-### 避免404
+### 10、避免404
 
 404我们都不陌生，代表服务器没有找到资源，我们要特别要注意404的情况不要在我们提供的网页资源上，客户端发送一个请求但是服务器却返回一个无用的结果，时间浪费掉了。
 
 更糟糕的是我们网页中需要加载一个外部脚本，结果返回一个404，不仅阻塞了其他脚本下载，下载回来的内容(404)客户端还会将其当成Javascript去解析。
 
-## 服务器
+## 二、服务器
 
-### 使用CDN
+### 1、使用CDN
 
 再次强调第一条黄金定律，减少网页内容的下载时间。提高下载速度还可以通过CDN(内容分发网络)来提升。CDN通过部署在不同地区的服务器来提高客户的下载速度。如果你的网站上有大量的静态内容，世界各地的用户都在访问，我说的是youtube么？那CDN是必不可少的。事实上大多数互联网中的巨头们都有自己的CDN。我们自己的网站可以先通过[免费的CDN供应商](http://en.wikipedia.org/wiki/Content_delivery_network#Free_CDNs)来分发网页资源。
 
-### 添加Expires 或Cache-Control报文头
+### 2、添加Expires 或Cache-Control报文头
 
 这条规则分为两个方面，
 
@@ -145,7 +145,7 @@ document.getElementsByTagName('*').length
 
 - 对于动态内容应用合适的Cache-Control，让浏览器根据条件来发送请求。关于asp.net的caching，可以看[asp.net cache feature和asp.net caching best practices](http://msdn.microsoft.com/en-us/library/aa478965.aspx)。
 
-### Gzip压缩传输文件
+### 3、Gzip压缩传输文件
 
 Gzip通常可以减少70%网页内容的大小，包括脚本、样式表、图片等文件。Gzip比deflate更高效，主流服务器都有相应的压缩支持模块。
 
@@ -153,25 +153,25 @@ IIS中内建了静态压缩和动态压缩模块，如何配制可以参考[Enab
 
 值得注意的是pdf文件可以从需要被压缩的类型中剔除，因为pdf文件本身已经压缩，gzip对其效果不大，而且会浪费CPU。
 
-### 配置ETags
+### 4、配置ETags
 
 虽然标题叫配制[ETags](http://www.baike.com/wiki/ETags)，但是这里你要根据具体情况进行一些判断。首先Etag简单来说是通过一个文件版本标识使得服务器可以轻松判断该请求的内容是否有所更新，如果没有就回复304 (not modified)，从而避免下载整个文件。
 
 但是Etags的版本信息即使主流服务器未能很好地支持跨服务器的判断，比如你从一个服务器集群中一台得到Etags，然后发送到了另一台那么校验很有可能会失败。
 
-### 尽早flush输出
+### 5、尽早flush输出
 
 网页后台程序中我们知道有个方法叫[Response.Flush()](http://msdn.microsoft.com/en-us/library/system.web.httpresponse.flush.aspx)，一般我们调用它都是在程序末尾，但注意这个方法可以被调用多次。目的是可以将现有的缓存中的回复内容先发给客户端，让客户端“有活干”。
 
 那在什么时候调用这个方法比较好呢？一般情况下我们可以在对于需要加载比较多外部脚本或者样式表时可以提前调用一次，客户端收到了关于脚本或其他外部资源的链接可以并行的先发请求去下载，服务器接下来把后续的处理结果发给客户端。
 
-### 使用GET Ajax请求
+### 6、使用GET Ajax请求
 
 浏览器在实现XMLHttpRequest POST的时候分成两步，先发header，然后发送数据。而GET却可以用一个TCP报文完成请求。另外GET从语义上来讲是去服务器取数据，而POST则是向服务器发送数据，所以我们使用Ajax请求数据的时候尽量通过GET来完成。
 
 关于GET和POST的详细对比可以查看[这里](http://www.w3schools.com/tags/ref_httpmethods.asp)。
 
-### 避免空的图片src
+### 7、避免空的图片src
 
 空的图片src仍然会使浏览器发送请求到服务器，这样完全是浪费时间，而且浪费服务器的资源。尤其是你的网站每天被很多人访问的时候，这种空请求造成的伤害不容忽略。
 
@@ -188,9 +188,9 @@ var img = new Image();
 img.src = "";
 ```
 
-## Cookie
+## 三、Cookie
 
-### 减少Cookie大小
+### 1、减少Cookie大小
 
 Cookie被用来做认证或个性化设置，其信息被包含在http报文头中，对于cookie我们要注意以下几点，来提高请求的响应速度，
 
@@ -206,7 +206,7 @@ Cookie被用来做认证或个性化设置，其信息被包含在http报文头�
 
 页面内容使用无cookie域名
 
-### 页面内容使用无cookie域名
+### 2、页面内容使用无cookie域名
 
 大多数网站的静态资源都没必要cookie，我们可以采用不同的domain来单独存放这些静态文件，这样做不仅可以减少cookie大小从而提高响应速度，还有一个好处是有些proxy拒绝缓存带有cookie的内容，如果能将这些静态资源cookie去除，那就可以得到这些proxy的缓存支持。
 
@@ -214,15 +214,15 @@ Cookie被用来做认证或个性化设置，其信息被包含在http报文头�
 
 也有一些网站需要在二级域名上应用cookie，所有的子域都会继承，这种情况下一般会再购买一个专门的域名来存放cookie-free的静态资源。例如Yahoo!的yimg.com，YouTube的ytimg.com等。
 
-## CSS
+## 四、CSS
 
-### 将样式表置顶
+### 1、将样式表置顶
 
 经样式表(css)放在网页的HEAD中会让网页**显得**加载速度更快，因为这样做可以使浏览器逐步加载已将下载的网页内容。这对内容比较多的网页尤其重要，用户不用一直等待在一个白屏上，而是可以先看已经下载的内容。
 
 如果将样式表放在底部，浏览器会拒绝渲染已经下载的网页，因为大多数浏览器在实现时都努力避免重绘，样式表中的内容是绘制网页的关键信息，没有下载下来之前只好对不起观众了。
 
-### 避免CSS表达式
+### 2、避免CSS表达式
 
 CSS表达式可以动态的设置CSS属性，在IE5-IE8中支持，其他浏览器中表达式会被忽略。例如下面表达式在不同时间设置不同的背景颜色。
 
@@ -256,17 +256,17 @@ else {
 </html>
 ```
 
-### 用<link>代替@import
+### 3、用<link>代替@import
 
 避免使用@import的原因很简单，因为它相当于将css放在网页内容底部。
 
-### 避免使用Filters
+### 4、避免使用Filters
 
 [AlphaImageLoad](http://msdn.microsoft.com/en-us/library/ms532969%28v=vs.85%29.aspx)也是IE5.5 - IE8中支持，这种滤镜的使用会导致图片在下载的时候阻塞网页绘制，另外使用这种滤镜会导致内存使用量的问题。IE9中已经不再支持。
 
-## Javascript
+## 五、Javascript
 
-### 将脚本置底
+### 1、将脚本置底
 
 [HTTP/1.1 specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.1.4)建议浏览器对同一个hostname不要超过两个并行下载连接， 所以当你从多个domain下载图片的时候可以提高并行下载连接数量。但是当脚本在下载的时候，即使是来自不同的hostname浏览器也不会下载其他资源，因为浏览器要在脚本下载之后依次解析和执行。
 
@@ -278,7 +278,7 @@ else {
 
 - HTML5中新加了async关键字，可以让脚本异步执行。
 
-### 使用外部Javascirpt和CSS文件
+### 2、使用外部Javascirpt和CSS文件
 
 使用外部Javascript和CSS文件可以使这些文件被浏览器缓存，从而在不同的请求内容之间重用。
 
@@ -286,7 +286,7 @@ else {
 
 使用外部Javascript和CSS文件的决定因素在于这些外部文件的重用率，如果用户在浏览我们的页面时会访问多次相同页面或者可以重用脚本的不同页面，那么外部文件形式可以为你带来很大的好处。但对于用户通常只会访问一次的页面，例如microsoft.com首页，那inline的javascript和css相对来说可以提供更高的效率。
 
-### 精简Javascript和CSS
+### 3、精简Javascript和CSS
 
 精简就是将Javascript或CSS中的空格和注释全去掉
 
@@ -347,11 +347,11 @@ CSS compressors:
 [AjaxMin](http://ajaxmin.codeplex.com/)  - 编译集成
 
 
-### 去除重复脚本
+### 4、去除重复脚本
 
 重复的脚本不仅浪费浏览器的下载时间，而且浪费解析和执行时间。一般用来避免引入重复脚本的做法是使用统一的脚本管理模块，这样不仅可以避免重复脚本引入，还可以兼顾脚本依赖管理和版本管理。
 
-### 减少DOM访问
+### 5、减少DOM访问
 
 通过Javascript访问DOM元素没有我们想象中快，元素多的网页尤其慢，对于Javascript对DOM的访问我们要注意
 
@@ -361,15 +361,15 @@ CSS compressors:
 
 - 避免通过Javascript修复layout
 
-### 使用智能事件处理
+### 6、使用智能事件处理
 
 这里说智能的事件处理需要开发者对事件处理有更深入的了解，通过不同的方式尽量少去触发事件，如果必要就尽早的去处理事件。
 
 比如一个div中10个按钮都需要事件句柄，那么我们可以将事件放在div上，在事件冒泡过程中捕获该事件然后判断事件来源。
 
-## 图片
+## 六、图片
 
-### 优化图像
+### 1、优化图像
 
 当美工完成了网站的图片设计后，我们可以在上传图片之前对其做以下优化
 
@@ -397,7 +397,7 @@ pngcrush image.png -rem alla -reduce -brute result.png
 jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 ```
 
-### 优化CSS Sprite
+### 2、优化CSS Sprite
 
 - Spirite中水平排列图片，垂直排列会增加文件大小；
 
@@ -405,11 +405,11 @@ jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 
 不要在Spirite的图像中间留有较大空隙。这虽然不大会增加文件大小,但对于用户代理来说它需要更少的内存来把图片解压为像素地图。100×100的图片为1万像素，1000×1000就是100万像素。
 
-### 不要在HTML中缩放图片
+### 3、不要在HTML中缩放图片
 
 不要通过图片缩放来适应页面，如果你需要小图片，就直接使用小图片吧。
 
-### 使用小且可缓存的favicon.ico
+### 4、使用小且可缓存的favicon.ico
 
 网站图标文件favicon.ico，不管你服务器有还是没有，浏览器都会去尝试请求这个图标。所以我们要确保这个图标
 
@@ -419,14 +419,16 @@ jpegtran -copy none -optimize -perfect src.jpg dest.jpg
 
 - 设置一个长的过期时间
 
-## 移动客户端
+## 七、移动客户端
 
-### 保持单个内容小于25KB
+### 1、保持单个内容小于25KB
 
 这限制是因为iphone，他只能缓存小于25K，注意这是解压后的大小。所以单纯gzip不一定够用，精简文件工具要用上了。
 
-### 打包组建成符合文档
+### 2、打包组建成符合文档
 
 把页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组建。当你使用这条规则时，首先要确定用户代理是否支持（iPhone不支持）。
 
-原文：[毫秒必争，前端网页性能最佳实践](http://www.cnblogs.com/developersupport/p/webpage-performance-best-practices.html)
+## 八、原文
+
+[毫秒必争，前端网页性能最佳实践](http://www.cnblogs.com/developersupport/p/webpage-performance-best-practices.html)

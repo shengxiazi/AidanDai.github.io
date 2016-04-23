@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript 跨浏览器简单事件处理工具对象</title>
+	<style type="text/css">
+		ol{
+			cursor: pointer;
+			padding: 20px;
+			background-color: #333;
+		}
+		li{
+			cursor: pointer;
+			margin: 10px;
+			background-color: #999;
+		}
+	</style>
+</head>
+<body>
+	<ol>
+		<li>我是第1个li</li>
+		<li>我是第2个li</li>
+		<li>我是第3个li</li>
+		<li>我是第4个li</li>
+		<li>我是第5个li</li>
+		<li>我是第6个li</li>
+		<li>我是第7个li</li>
+		<li>我是第8个li</li>
+		<li>我是第9个li</li>
+		<li>我是第10个li</li>
+	</ol>
+	<script type="text/javascript">
+	/**
+		 * 跨浏览器简单事件处理工具对象
+		 * @type {Object}
+		 */
+		var eventUtil = {
+			/**
+			 * 添加事件处理程序
+			 * @param 	{Element} 	element 	添加事件元素
+			 * @param 	{string} 	type    	添加事件类型
+			 * @param 	{function} 	handler 	处理事件函数指针
+			 */
+			addHandler: function(element, type, handler){
+				if(element.addEventListener){
+					element.addEventListener(type, handler, false);
+				}else if(elemtn.attachEvent){
+					elemtn.attachEvent("on" + type, handler);
+				}else{
+					element["on" + type] = handler;
+				}
+			},
+			/**
+			 * 获得事件
+			 * @param  	{object} 	event 	事件
+			 * @return 	{object}       		事件
+			 */
+			getEvent: function(event){
+				return event ? event : window.event;
+			},
+			/**
+			 * 获得事件目标
+			 * @param  	{object} 	event 	事件
+			 * @return 	{Element}       	事件目标(例如：click 的元素)
+			 */
+			getTarget: function(event){
+				return event.target || event.scrElement;
+			},
+			/**
+			 * 阻止默认事件
+			 * @param  	{[object]} 	event 	事件
+			 */
+			preventDefault: function(event){
+				if(event.preventDefault){
+					event.preventDefault();
+				}else{
+					event.returnValue = false;
+				}
+			},
+			/**
+			 * 移除事件处理程序
+			 * @param 	{Element} 	element 	移除事件元素
+			 * @param 	{string} 	type    	移除事件类型
+			 * @param 	{function} 	handler 	处理事件函数指针
+			 */
+			removeHandler: function(element, type, handler){
+				if(element.removeEventListener){
+					element.removeEventListener(type, handler, false);
+				}else if(elemtn.detachEvent){
+					elemtn.detachEvent("on" + type, handler);
+				}else{
+					element["on" + type] = null;
+				}
+			},
+			/**
+			 * 停止派发事件(阻止捕获和冒泡)
+			 * @param  	{[object]} 	event 	事件
+			 */
+			stopPropagation: function(event){
+				if(event.stopPropagation){
+					event.stopPropagation();
+				}else{
+					event.cancelBubble = true;
+				}
+			},
+			mouse: {
+				/**
+				 * 获得事件相关元素
+				 * (针对 mouseover 和 mouseout;鼠标指针从一个元素移入另一个元素)
+				 * @param  	{object} 	event 	事件
+				 * @return 	{Element}       	相关元素(失去光标或获得光标元素)
+				 */
+				getRelateTarget: function(event){
+					if(event.relateTarget){
+						return event.relateTarget;
+					}else if(event.toElement){
+						return event.toElement;
+					}else if(event.formElement){
+						return event.formElement;
+					}else{
+						return null;
+					}
+				},
+				wheel: {
+					/**
+					 * 获取鼠标事件有关所有属性
+					 * @param  	{[object]} 	event 	事件
+					 */
+					getWheelDelta: function(event){
+						if(event.wheelDelta){
+							return (client.engine.opera && cilent.engine.opera < 9.5 ?
+								-event.wheelDelta : event.wheelDelta);
+						}else{
+							return -event.detail * 40;
+						}
+					}
+				}
+			},
+			keyboard: {
+				/**
+				 * onkeypress事件触发键值的字母代码
+				 * @param  	{[object]} 	event 	事件
+				 */
+				getCharCode: function(event){
+					if(typeof event.charCode == "Number"){
+						return event.charCode;
+					}else{
+						return event.keyCode;
+					}
+				}
+			}
+		};
+		var ol = document.querySelector("ol"),
+			hello = function(event){
+				var target = eventUtil.getTarget(event);
+				alert(target.innerHTML);
+			}; 
+		/**
+		 * 事件委托示例
+		 */
+		eventUtil.addHandler(ol, "click", hello);
+	</script>
+</body>
+</html>

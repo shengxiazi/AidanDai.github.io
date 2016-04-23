@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CSS实现垂直居中的常用方法"
+title:  "【总结】CSS实现垂直居中的常用方法"
 date:   2016-03-17
 categories: css
 tags: css
@@ -11,7 +11,7 @@ author: Aidan Dai
 在前端开发过程中，盒子居中是常常用到的。其中 ，居中又可以分为水平居中和垂直居中。水平居中是比较容易的，直接设置元素的margin: 0 auto就可以实现。但是垂直居中相对来说是比较复杂一些的。下面我们一起来讨论一下实现垂直居中的方法。
 
 
-## margin and absolute
+## 一、margin and absolute
 
 example:
 
@@ -45,7 +45,7 @@ example:
 </html>
 ```
 
-## margin and relative
+## 二、margin and relative
 
 example:
 
@@ -78,7 +78,7 @@ example:
 </html>
 ```
 
-## margin and tranform
+## 三、margin and tranform
 
 example:
 
@@ -112,7 +112,7 @@ example:
 </html>
 ```
 
-## flex
+## 四、flex
 
 example:
 

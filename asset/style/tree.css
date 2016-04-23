@@ -1,0 +1,11 @@
+.post{
+	margin: 30px auto;
+	width: 80%;
+	background-color: #fff;
+}
+.post-content{
+	padding: 30px;
+}
+.post-content *{
+	max-width: 100%;
+}

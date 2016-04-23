@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>Tree - Nav &laquo; Aidan's Blog</title> 
+  <meta charset="utf-8" /> 
+  <meta name="robots" content="noindex,follow" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <meta name="renderer" content="webkit|ie-comp|ie-stand" /> 
+  <meta name="keywords" content="文桥的个人博客,文桥,Aidan Dai, AidanDai, Aidan,Aidan的自留地,文桥的个人网站 
+" /> 
+  <meta name="description" content="Stay hungry, stay foolish! - http://www.aidandai.com(专注前端，记录前端路上的点点滴滴！)
+" /> 
+  <meta name="author" content="Aidan Dai, aidandai@126.com, http://www.aidandai.com/" /> 
+  <meta property="og:url" content="http://www.aidandai.com" /> 
+  <meta property="og:site_name" content="Aidan's Blog" /> 
+  <meta property="og:title" content="关于 &laquo; Aidan's Blog" /> 
+  <meta property="og:description" content="Stay hungry, stay foolish! - http://www.aidandai.com(专注前端，记录前端路上的点点滴滴！)
+" /> 
+  <meta property="og:image" content="http://www.aidandai.com/asset/images/aidan.jpg" /> 
+  <meta property="og:image:type" content="image/jpg" /> 
+  <meta property="og:image:width" content="400" /> 
+  <meta property="og:image:height" content="400" /> 
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" /> 
+  <script src="/asset/static/fancytree/lib/jquery.js" type="text/javascript"></script> 
+  <script src="/asset/static/fancytree/lib/jquery-ui.custom.js" type="text/javascript"></script> 
+  <link href="/asset/static/fancytree/src/skin-win8/ui.fancytree.css" rel="stylesheet" type="text/css" /> 
+  <script src="/asset/static/fancytree/src/jquery.fancytree.js" type="text/javascript"></script>  
+  <style type="text/css">
+	body {
+		background-color: #39414A;
+		color: white;
+		font-family: Helvetica, Arial, sans-serif;
+		font-size: smaller;
+		/*background-image: url("nav_bg.png");*/
+		background-repeat: repeat-x;
+	}
+	div#tree {
+		position: absolute;
+		height: 95%;
+		width: 95%;
+		padding: 5px;
+		margin-right: 16px;
+	}
+	ul.fancytree-container {
+		height: 100%;
+		width: 100%;
+		background-color: transparent;
+	}
+	span.fancytree-node span.fancytree-title {
+		color: white;
+		text-decoration: none;
+	}
+	span.fancytree-focused span.fancytree-title {
+		outline-color: white;
+	}
+	span.fancytree-node:hover span.fancytree-title,
+	span.fancytree-active span.fancytree-title,
+	span.fancytree-active.fancytree-focused span.fancytree-title,
+	.fancytree-treefocus span.fancytree-title:hover,
+	.fancytree-treefocus span.fancytree-active span.fancytree-title {
+		color: #39414A;
+	}
+	span.external span.fancytree-title:after {
+		content: "";
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAFVBMVEVmmcwzmcyZzP8AZswAZv////////9E6giVAAAAB3RSTlP///////8AGksDRgAAADhJREFUGFcly0ESAEAEA0Ei6/9P3sEcVB8kmrwFyni0bOeyyDpy9JTLEaOhQq7Ongf5FeMhHS/4AVnsAZubxDVmAAAAAElFTkSuQmCC") 100% 50% no-repeat;
+		padding-right: 13px;
+	}
+	/* Remove system outline for focused container */
+	.ui-fancytree.fancytree-container:focus {
+		outline: none;
+	}
+	.ui-fancytree.fancytree-container {
+		border: none;
+	}
+	/*滚动条宽度*/  
+    ::-webkit-scrollbar,  
+    ::-webkit-scrollbar {  
+        width: 8px;  
+    }    
+    /* 轨道样式 */  
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-track{  
+      
+    }  
+    /* Handle样式 */  
+   	::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-thumb {  
+        border-radius: 10px;  
+        background: rgba(0,0,0,0.2);   
+    }   
+    /*当前窗口未激活的情况下*/  
+    ::-webkit-scrollbar-thumb:window-inactive,
+    ::-webkit-scrollbar-thumb:window-inactive {  
+        background: rgba(0,0,0,0.1);   
+    }  
+    /*hover到滚动条上*/  
+    ::-webkit-scrollbar-thumb:vertical:hover,
+    ::-webkit-scrollbar-thumb:vertical:hover{  
+        background-color: rgba(0,0,0,0.3);  
+    }  
+    /*滚动条按下*/  
+    ::-webkit-scrollbar-thumb:vertical:active,
+    ::-webkit-scrollbar-thumb:vertical:active{  
+        background-color: rgba(0,0,0,0.7);  
+    }  
+	</style> 
+  <script type="text/javascript">
+		$(function(){
+			// --- Initialize sample trees
+			$("#tree").fancytree({
+				autoActivate: false, // we use scheduleAction()
+				autoCollapse: true,	// autoFocus: true,
+				autoScroll: true,
+				clickFolderMode: 3, // expand with single click
+				minExpandLevel: 2,
+				tabindex: "-1", // we don't want the focus frame
+				
+				// scrollParent: null, // use $container
+				focus: function(event, data) {
+					var node = data.node;
+					// Auto-activate focused node after 1 second
+					if(node.data.href){
+						node.scheduleAction("activate", 1000);
+					}
+				},
+				blur: function(event, data) {
+					data.node.scheduleAction("cancel");
+				},
+				activate: function(event, data){
+					var node = data.node,
+						orgEvent = data.originalEvent || {};
+
+					if(node.data.href){
+						window.open(node.data.href, (orgEvent.ctrlKey || orgEvent.metaKey) ? "_blank" : node.data.target);
+					}
+					if( window.parent &&  parent.history && parent.history.pushState ) {
+						// Add #HREF to URL without actually loading content
+						parent.history.pushState({title: node.title}, "", "#" + (node.data.href || ""));
+					}
+				},
+				click: function(event, data){ // allow re-loads
+					var node = data.node,
+						orgEvent = data.originalEvent;
+
+					if(node.isActive() && node.data.href){
+						// data.tree.reactivate();
+						window.open(node.data.href, (orgEvent.ctrlKey || orgEvent.metaKey) ? "_blank" : node.data.target);
+					}
+				}
+			});
+			// On page load, activate node if node.data.href matches the url#href
+			var tree = $(":ui-fancytree").fancytree("getTree"),
+				frameHash = window.parent && window.parent.location.hash;
+
+			if( frameHash ) {
+				frameHash = frameHash.replace("#", "");
+				tree.visit(function(n) {
+					if( n.data.href && n.data.href === frameHash ) {
+						n.setActive();
+						return false; // done: break traversal
+					}
+				});
+			}
+		});
+	</script> 
+ </head> 
+ <body> 
+  <div id="tree"> 
+   <ul> 
+    <!-- <li class="folder expanded">web Developer  -->
+      <!-- <li class="folder expanded"> 前端基础
+      	<ul> 
+	      <li><a target="content" href="/asset/tree/html.html">HTML</a> </li>
+	      <li><a target="content" href="/asset/tree/css.html">CSS</a> </li>
+	     </ul> 
+      </li> -->
+      <!-- <li class="folder expanded">类库或框架
+      	<ul> 
+	       <li><a target="content" href="/asset/tree/jQuery.html">jQuery</a> </li>
+	     </ul> 
+      </li> -->
+      <!-- <li class="folder expanded">web 优化
+      	<ul> 
+	       <li><a target="content" href=""></a> </li>
+	     </ul> 
+      </li> -->
+      <!-- <li class="folder expanded">web 安全
+      	<ul> 
+	  		<li><a target="content" href=""></a> </li> 
+	     </ul> 
+      </li> -->
+	  <!-- <li class="folder expanded">web 通信
+      	<ul> 
+	       <li><a target="content" href="/asset/tree/http.html">HTTP</a> </li>
+	     </ul> 
+      </li> -->
+	  <!-- <li class="folder expanded">web 架构
+      	<ul> 
+	  		 <li><a target="content" href="/asset/tree/web-pattern.html">架构模式</a> </li>
+	     </ul> 
+      </li> -->
+    <!-- </li> -->
+    <!-- <li class="folder expanded"> 工具
+     <ul> 
+     	<li class="folder expanded"> Photoshop
+	      	<ul> 
+		      	<li><a target="content" href="">切图</a> </li>
+		      	<li><a target="content" href="">设计</a> </li>
+		    </ul> 
+      	</li>
+      	<li class="folder expanded"> Git
+	      	<ul> 
+		      	<li><a target="content" href="">Git 入门</a> </li>
+		    </ul> 
+      	</li>
+      </ul>
+  	</li> -->
+  	<li class="folder expanded"> 编程语言
+     <ul> 
+     	<li class="folder expanded"> Javascript
+	      	<ul> 
+	      		<li class="external"><a target="_blank" href="/archives/javascript-face-object-code">面向对象编程</a></li>
+		      	<li class="external"><a target="_blank" href="/archives/javascript-and-html-dom-event-detail">HTML DOM 事件</a></li>
+		    </ul> 
+      	</li>
+      </ul>
+  	</li>
+  	<!-- <li class="folder expanded"> 编程能力
+     <ul> 
+     	<li class="folder expanded"> 面向对象程序设计
+	      	<ul> 
+		      	<li><a target="content" href="/archives/uml.html">UML面向对象建模与设计</a> </li>
+		      	<li><a target="content" href="/archives/designer-pattern">设计模式</a> </li>
+		    </ul> 
+      	</li>
+      </ul>
+  	</li> -->
+   </ul> 
+  </div>   
+ </body>
+</html>

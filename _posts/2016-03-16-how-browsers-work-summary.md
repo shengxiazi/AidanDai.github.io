@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "现代浏览器的工作原理简介"
+title:  "【笔记】现代浏览器的工作原理简介"
 date:   2016-03-16
 categories: browser
 tags: browser html css javascript DOM web
@@ -10,13 +10,13 @@ author: Aidan Dai
 
 看到这个标题大家一定会想到这篇神文[《How Browsers Work》](http://taligarsiel.com/Projects/howbrowserswork1.htm)，这篇文章把浏览器的很多细节讲得很细，而且也被[翻译成了中文](http://kb.cnblogs.com/page/178445/)。为什么我还想写一篇呢？因为两个原因，
 
-1）这篇文章太长了，阅读成本太大，不能一口气读完。
+（1）这篇文章太长了，阅读成本太大，不能一口气读完。
 
-2）花了大力气读了这篇文章后可以了解很多，但似乎对工作没什么帮助。
+（2）花了大力气读了这篇文章后可以了解很多，但似乎对工作没什么帮助。
 
 所以，我准备写下这篇文章来解决上述两个问题。希望你能在上班途中，或是坐马桶时就能读完，并能从中学会一些能用在工作上的东西。
 
-## 浏览器工作大流程
+## 一、浏览器工作大流程
 
 废话少说，先来看个图：
 
@@ -24,7 +24,7 @@ author: Aidan Dai
 
 从上面这个图中，我们可以看到那么几个事：
 
-1）浏览器会解析三个东西：
+（1）浏览器会解析三个东西：
 
 - 一个是HTML/SVG/XHTML，事实上，Webkit有三个C++的类对应这三类文档。解析这三种文件会产生一个DOM Tree。
 
@@ -32,7 +32,7 @@ author: Aidan Dai
 
 - Javascript，脚本，主要是通过DOM API和CSSOM API来操作DOM Tree和CSS Rule Tree.
 
-2）解析完成后，浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree。注意：
+（2）解析完成后，浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree。注意：
 
 - Rendering Tree 渲染树并不等同于DOM树，因为一些像Header或display:none的东西就没必要放在渲染树中了。
 
@@ -40,9 +40,9 @@ author: Aidan Dai
 
 - 然后，计算每个Frame（也就是每个Element）的位置，这又叫layout和reflow过程。
 
-3）最后通过调用操作系统Native GUI的API绘制。
+（3）最后通过调用操作系统Native GUI的API绘制。
 
-## DOM解析
+## 二、DOM解析
 
 HTML的DOM Tree解析如下：
 
@@ -69,7 +69,7 @@ HTML的DOM Tree解析如下：
 
 ![DOM-Tree-02](/asset/images/article/DOM-Tree-02.jpg)
 
-## CSS解析
+## 三、CSS解析
 
 CSS的解析大概是下面这个样子（下面主要说的是Gecko也就是Firefox的玩法），假设我们有下面的HTML文档：
 
@@ -114,7 +114,7 @@ CSS的解析大概是下面这个样子（下面主要说的是Gecko也就是Fir
 
 注：Webkit不像Firefox要用两个树来干这个，Webkit也有Style对象，它直接把这个Style对象存在了相应的DOM结点上了。
 
-## 渲染
+## 四、渲染
 
 渲染的流程基本上如下（黄色的四个步骤）：
 
@@ -138,7 +138,7 @@ CSS的解析大概是下面这个样子（下面主要说的是Gecko也就是Fir
 
 下面是一个打开Wikipedia时的Layout/reflow的视频（注：HTML在初始化的时候也会做一次reflow，叫 intial reflow），你可以感受一下：
 
-**视频请查看原文中的！**
+<embed src="http://player.youku.com/player.php/sid/XMzI5MDg0OTA0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 
 Reflow的成本比Repaint的成本高得多的多。DOM Tree里的每个结点都会有reflow方法，一个结点的reflow很有可能导致子结点，甚至父点以及同级结点的reflow。**在一些高性能的电脑上也许还没什么，但是如果reflow发生在手机上，那么这个过程是非常痛苦和耗电的**。
 
@@ -201,11 +201,11 @@ document.body.appendChild(document.createTextNode('dude!'));
 
 因为，如果我们的程序需要这些值，那么浏览器需要返回最新的值，而这样一样会flush出去一些样式的改变，从而造成频繁的reflow/repaint。
 
-## 减少reflow/repaint
+## 五、减少reflow/repaint
 
 下面是一些Best Practices：
 
-### 1）不要一条一条地修改DOM的样式。与其这样，还不如预先定义好css的class，然后修改DOM的className。
+### （1）不要一条一条地修改DOM的样式。与其这样，还不如预先定义好css的class，然后修改DOM的className。
 
 ```javascript
 // bad
@@ -221,7 +221,7 @@ el.className += " theclassname";
 el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
 ```
 
-### 2）把DOM离线后修改。如：
+### （2）把DOM离线后修改。如：
 
 - 使用documentFragment 对象在内存里操作DOM
 
@@ -229,13 +229,13 @@ el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
 
 - clone一个DOM结点到内存里，然后想怎么改就怎么改，改完后，和在线的那个的交换一下。
 
-### 3）不要把DOM结点的属性值放在一个循环里当成循环里的变量。不然这会导致大量地读写这个结点的属性。
+### （3）不要把DOM结点的属性值放在一个循环里当成循环里的变量。不然这会导致大量地读写这个结点的属性。
 
-### 4）尽可能的修改层级比较低的DOM。当然，改变层级比较底的DOM有可能会造成大面积的reflow，但是也可能影响范围很小。
+### （4）尽可能的修改层级比较低的DOM。当然，改变层级比较底的DOM有可能会造成大面积的reflow，但是也可能影响范围很小。
 
-### 5）为动画的HTML元件使用fixed或absoult的position，那么修改他们的CSS是不会reflow的。
+### （5）为动画的HTML元件使用fixed或absoult的position，那么修改他们的CSS是不会reflow的。
 
-### 6）千万不要使用table布局。因为可能很小的一个小改动会造成整个table的重新布局。
+### （6）千万不要使用table布局。因为可能很小的一个小改动会造成整个table的重新布局。
 
 >In this manner, the user agent can begin to lay out the table once the entire first row has been received. Cells in subsequent rows do not affect column widths. Any cell that has content that overflows uses the ‘overflow’ property to determine whether to clip the overflow content.
 
@@ -245,7 +245,7 @@ el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
 
 >Automatic layout, CSS 2.1 Specification
 
-## 几个工具和几篇文章
+## 六、几个工具和几篇文章
 
 有时候，你会也许会发现在IE下，你不知道你修改了什么东西，结果CPU一下子就上去了到100%，然后过了好几秒钟repaint/reflow才完成，这种事情以IE的年代时经常发生。所以，我们需要一些工具帮我们看看我们的代码里有没有什么不合适的东西。
 
@@ -263,7 +263,7 @@ el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
 
 - [Steve Souders – 14 Rules for Faster-Loading Web Sites](http://stevesouders.com/hpws/rules.php)
 
-## 参考
+## 七、参考资料
 
 - David Baron的演讲：Fast CSS: How Browsers Lay Out Web Pages：[slideshow](http://dbaron.org/talks/2012-03-11-sxsw/slide-1.xhtml), [all slides](http://dbaron.org/talks/2012-03-11-sxsw/master.xhtml), [audio (MP3)](http://audio.sxsw.com/2012/podcasts/11-ACC-Fast_CSS_How_Browser_Layout.mp3), [Session page](http://schedule.sxsw.com/2012/events/event_IAP12909), [Lanyrd page](http://lanyrd.com/2012/sxsw-interactive/spmbt/)
 
@@ -279,4 +279,6 @@ el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
 
 - Webkit Rendering文档：http://trac.webkit.org/wiki/WebCoreRendering
 
-**注：原文：[陈皓: 浏览器的渲染原理简介](http://coolshell.cn/articles/9666.html)**
+## 八、原文
+
+[陈皓: 浏览器的渲染原理简介](http://coolshell.cn/articles/9666.html)

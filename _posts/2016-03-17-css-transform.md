@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "css之transform"
+title:  "【总结】css之transform"
 date:   2016-03-17
 categories: css
 tags: css
@@ -10,11 +10,11 @@ author: Aidan Dai
 
 在参加2016-spring百度前端技术学院做团队静态主页时我们大胆尝试使用了大量的css3的高级属性，自我感觉还是不错的！欢迎去看看[baidu-ife: SHSF团队]( http://ife-SHSF.github.io)。不过当时理解的还是比较浅薄的，现在回过头来在研究研究！更进一步吧！
 
-## 语法及取值等
+## 一、语法及取值等
 
 请参考[杜瑶: CSS参考手册](http://css.doyoe.com/)
 
-## 变换类型
+## 二、变换类型
 
 <pre>
 transform-style：flat | preserve-3d
@@ -26,11 +26,11 @@ preserve-3d: 指定子元素定位在三维空间内
 
 
 
-## 平面变换
+## 三、平面变换
 
 指定元素平面变换基准点，默认在元素中心
 
-### 旋转rotate、移动translate、缩放scale
+### 1、旋转rotate、移动translate、缩放scale
 
 ![rotate](/asset/images/article/rotate.png)
 
@@ -46,31 +46,31 @@ preserve-3d: 指定子元素定位在三维空间内
 
 - 旋转、移动、缩放都可指定是单方向的
 
-### 扭曲skew、矩阵matrix
+### 2、扭曲skew、矩阵matrix
 
 扭曲也可指单方向的,当然基点也是元素中心（默认），其实可以把基点想象成做图形变换的坐标原点，然后依次在该坐标系对元素的个顶点进行矩阵变换，以求得新的坐标位置，变换过程遵循下图的公式（来自[W3C:  transformation matrices ](https://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined)），只是参与运算的矩阵不相同而已；有兴趣的可以去研究一下！
 
 ![MatrixMultiply](/asset/images/article/MatrixMultiply.png)
 
-#### X单方向扭曲
+#### （1）X单方向扭曲
 
 运算矩阵：
 
 ![MatrixSkewX](/asset/images/article/MatrixSkewX.png)
 
-#### Y单方向扭曲
+#### （2）Y单方向扭曲
 
 运算矩阵：
 
 ![MatrixSkewY](/asset/images/article/MatrixSkewY.png)
 
-#### 矩阵matrix
+#### （3）矩阵matrix
 
 运算矩阵：
 
 ![Matrix](/asset/images/article/Matrix.png)
 
-#### 平面综合变换示例
+#### （4）平面综合变换示例
 
 ![NestedCalcs](/asset/images/article/NestedCalcs.png)
 
@@ -82,11 +82,11 @@ preserve-3d: 指定子元素定位在三维空间内
 
 3、CMT的逆乘以原坐标矩阵，求得新坐标矩阵
 
-## 三维空间变换
+## 四、三维空间变换
 
 指定元素三维空间变换基准点，默认在元素中心
 
-### 浏览器三维坐标系：(屏幕左上角为坐标原点)
+### 1、浏览器三维坐标系：(屏幕左上角为坐标原点)
 
 ![3d_axes](/asset/images/article/3d_axes.png)
 
@@ -104,7 +104,7 @@ preserve-3d: 指定子元素定位在三维空间内
 
 ![旋转飞刀的特技表演是rotateZ](/asset/images/article/rotatez-example.jpg)
 
-### 必不可少的perspective属性
+### 2、必不可少的perspective属性
 
 ```html
 <!DOCTYPE html>
@@ -138,7 +138,7 @@ preserve-3d: 指定子元素定位在三维空间内
 
 注意两者的区别！
 
-## 参考资料
+## 五、参考资料
 
 [W3cplus: CSS3 Transform](http://www.w3cplus.com/content/css3-transform)
 

@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "现代浏览器的工作原理"
+title:  "【笔记】现代浏览器的工作原理"
 date:   2016-03-15
 categories: browser
-tags: browser html css javascript DOM web
-keyword: "browser,html, css, javascript, DOM, web"
+tags: browser web
+keyword: "browser, web"
 author: Aidan Dai
 ---
 
@@ -1097,8 +1097,8 @@ Inline盒模型放置在行内或是line box中，每行至少和最高的box一
 
 虽然绿色div排在红色div后面，可能在正常流中也已经被绘制在后面，但z-index有更高优先级，所以在根box的堆栈中更靠前。
 
-**注：**
+## 十一、原文
 
-**原文： [How Browsers Work: Behind the scenes of modern web browsers](http://taligarsiel.com/Projects/howbrowserswork1.htm)**
+原文： [How Browsers Work: Behind the scenes of modern web browsers](http://taligarsiel.com/Projects/howbrowserswork1.htm)**
 
-**译文： [浏览器内部工作原理](http://kb.cnblogs.com/page/129756/)**
+译文： [浏览器内部工作原理](http://kb.cnblogs.com/page/129756/)**

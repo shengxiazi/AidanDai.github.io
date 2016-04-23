@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "HTML5的文档节段和纲要"
+title:  "【笔记】HTML5的文档节段和纲要"
 date:   2016-03-15
 categories: html
 tags: html5
@@ -8,7 +8,7 @@ keyword: "html5,HTML5的文档节段,纲要"
 author: Aidan Dai
 ---
 
-## HTML4的文档结构
+## 一、HTML4的文档结构
 
 文档结构，即，<body>标记之间内容的语义结构，对呈现页面给用户是重要的。HTML4用文档中章节和子章节的概念去描述文档结构。一个章节由一个包含着标题元素（h1-h6）的div元素表示。这些html划分元素（HTML Dividing Elements）和标题元素（HTML Heading Elements）形成了文档的结构和纲要。
 
@@ -32,7 +32,7 @@ author: Aidan Dai
 
 >HTML div元素（ &lt;div&gt;elements）并不强制性地定义一个章节。一个HTML 标题元素（ HTML Heading Element）的出现就足以意味着新的章节.
 
-## HTML5解决的问题
+## 二、HTML5解决的问题
 
 >HTML 4 的文档结构定义和其隐含的大纲算法非常粗糙而且造成了很多问题：
 
@@ -44,9 +44,9 @@ author: Aidan Dai
 
 >- 另外, 因为在 HTML4中任何的部分都是文档大纲的一部分, 没有办法产生与网站相关而不是与文档相关的节段，比如logos,menus,目录或版权信息和法律声明。为了这个目的, HTML5 引入了三个特殊的节段 元素： 包含链接集合的nav元素&lt;nav&gt; , 例如目录, 包含网站相关信息的footer元素&lt;footer&gt; 和header元素 &lt;header&gt; 。
 
-## HTML5的大纲算法
+## 三、HTML5的大纲算法
 
-### 在HTML5中定义章节
+### 1、在HTML5中定义章节
 
 >&lt;body&gt; 元素中的所有内容都是节段中的一部分。节段在HTML5中是可以嵌套的。Beside the main section, defined by the &lt;body&gt; element, section limits are defined either explicitly or implicitly. 显示定义的节段 是通过&lt;body&gt;,  &lt;section&gt;,  &lt;article&gt;,  &lt;aside&gt;, &lt;footer&gt;,  &lt;header&gt;和 &lt;nav&gt; 这些标记中的内容。
 
@@ -113,7 +113,7 @@ example:
 
 注意标题元素的级别（例子中的第一个顶层节段的 &lt;h1&gt;，子节段中的&lt;h2&gt; 和第二个顶层节段中的&lt;h3&gt;）并不重要。（任何级别可以用作显示定义的节段的标题，虽然这种做法并不推荐。）
 
-### 隐式分节
+### 2、隐式分节
 
 **不是个好习惯！**
 
@@ -145,7 +145,7 @@ example:
 	1.4 Reptiles (implicitly defined by the h2 element, which closes the previous section at the same time)
 </pre>
 
-### 分结根
+### 3、分结根
 
 >分节根是一个HTML元素，这个元素可以拥有自己的大纲，但是元素内部的节段和标题对其祖先的大纲没有贡献。与文档的逻辑分节根&lt;body&gt;元素相比，这些元素经常在页面中引入外部内容：&lt;blockquote&gt;, &lt;details&gt;, &lt;fieldset&gt;, &lt;figure&gt; 和&lt;td&gt;。
 
@@ -180,7 +180,7 @@ example:
 
 >这个大纲并不包含 &lt;blockquote&gt; 元素的内部大纲。&lt;blockquote&gt; 元素是一个外部引用，是一个分节根并隔离了他内部的大纲
 
-### 大纲之外的节段
+### 4、大纲之外的节段
 
 >HTML5引入了4个新的元素，用来定义那些不属于web文档主要大纲中的节段。
 
@@ -192,13 +192,13 @@ example:
 
 >4、HTML 脚部分节元素 (&lt;footer&gt;) 定义了页脚, 通常会包含版权信息和法律声明以及一些其他链接。同样，其不一定是在页面的底部出现。
 
-## 分节元素中的地址和发表时间
+## 四、分节元素中的地址和发表时间
 
 >一个文档可以由不同作者的不同节段组成。一个从其他作者而不是文档作者写的节段用&lt;article&gt;元素定义。因此， &lt;address&gt; 元素连接到距离最近的&lt;body&gt;或&lt;article&gt; 祖先元素。
 
 >同样的，新的HTML5标记 &lt;time&gt;元素，使用pubdate布尔值，表示整个文档的发布时间，分别给文章，与其最近的&lt;body&gt;元素或&lt;article&gt; 元素的祖先元素相关。
 
-## 在不支持HTML5的浏览器器中使用HTML5
+## 五、在不支持HTML5的浏览器器中使用HTML5
 
 >分节和标题元素应该在大部分的不支持HTML5的浏览器中工作。尽管不支持，但不必使用特殊的DOM接口。仅仅只需要一个特殊的CSS样式，因为未知元素默认会样式化为display:inline：
 
@@ -232,6 +232,6 @@ html结构总插入以下代码：
 <![endif]-->
 ```
 
-## 总结
+## 六、总结
 
 HTML5中新的节段和标题标签带来了以标准的方法来描述web文档的结构和大纲。其为人们使用HTML5浏览器和需要结构来帮助他们理解页面带来了一个很大的优势。例如，人们需要一些辅助技术的帮助。这些新的语义元素时间用简单，几乎没有负担，也可以在不支持HTML5的浏览器中工作。因此，他们应该被广泛使用。

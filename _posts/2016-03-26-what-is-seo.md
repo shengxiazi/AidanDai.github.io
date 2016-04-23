@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SEO是什么？"
+title:  "【笔记】SEO是什么？"
 keyword: "SEO, SEOer"
 date:   2016-03-26
 categories: SEO

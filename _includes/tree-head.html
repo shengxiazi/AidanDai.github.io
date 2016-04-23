@@ -1,0 +1,170 @@
+<head>
+  <title>{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta name="keywords" content="{% if page.keyword %}{{ page.keyword | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.keyword }}{% endif %}">
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="author" content="Aidan Dai, aidandai@126.com, http://www.aidandai.com/">
+  <meta property="og:url" content="http://www.aidandai.com">
+  <meta property="og:site_name" content="Aidan's Blog">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="http://www.aidandai.com/asset/images/aidan.jpg">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon"/>
+  <link rel="stylesheet" href="{{ "/asset/style/main.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  
+  <script src="/asset/static/fancytree/lib/jquery.js" type="text/javascript"></script>
+  <script src="/asset/static/fancytree/lib/jquery-ui.custom.js" type="text/javascript"></script>
+
+  <link href="/asset/static/fancytree/src/skin-win8/ui.fancytree.css" rel="stylesheet" type="text/css">
+  <script src="/asset/static/fancytree/src/jquery.fancytree.js" type="text/javascript"></script>
+
+  <style type="text/css">
+    .ballot_box_with_check:before {
+      content: "\2611\ ";
+    }
+    .ballot_box:before {
+      content: "\2610\ ";
+    }
+    /*滚动条宽度*/  
+    .post-toc ::-webkit-scrollbar,  
+    .highlighter-rouge ::-webkit-scrollbar {  
+        width: 8px;  
+    }    
+    /* 轨道样式 */  
+    .post-toc ::-webkit-scrollbar-track,
+    .highlighter-rouge ::-webkit-scrollbar-track{  
+      
+    }  
+    /* Handle样式 */  
+    .post-toc ::-webkit-scrollbar-thumb,
+    .highlighter-rouge ::-webkit-scrollbar-thumb {  
+        border-radius: 10px;  
+        background: rgba(0,0,0,0.2);   
+    }   
+    /*当前窗口未激活的情况下*/  
+    .post-toc ::-webkit-scrollbar-thumb:window-inactive,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:window-inactive {  
+        background: rgba(0,0,0,0.1);   
+    }  
+    /*hover到滚动条上*/  
+    .post-toc ::-webkit-scrollbar-thumb:vertical:hover,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:vertical:hover{  
+        background-color: rgba(0,0,0,0.3);  
+    }  
+    /*滚动条按下*/  
+    .post-toc ::-webkit-scrollbar-thumb:vertical:active,
+    .highlighter-rouge ::-webkit-scrollbar-thumb:vertical:active{  
+        background-color: rgba(0,0,0,0.7);  
+    }  
+  
+    div#tree {
+    /*position: absolute;*/
+    /*height: 95%;*/
+    /*width: 95%;*/
+    /*padding: 5px;*/
+    /*margin-right: 16px;*/
+    /*background-color: red;*/
+  }
+  ul.fancytree-container {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    padding: 0;
+  }
+  span.fancytree-node span.fancytree-title {
+    color: white;
+    text-decoration: none;
+  }
+  span.fancytree-focused span.fancytree-title {
+    outline-color: white;
+  }
+  span.fancytree-node:hover span.fancytree-title,
+  span.fancytree-active span.fancytree-title,
+  span.fancytree-active.fancytree-focused span.fancytree-title,
+  .fancytree-treefocus span.fancytree-title:hover,
+  .fancytree-treefocus span.fancytree-active span.fancytree-title {
+    color: #39414A;
+  }
+  span.external span.fancytree-title:after {
+    content: "";
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAFVBMVEVmmcwzmcyZzP8AZswAZv////////9E6giVAAAAB3RSTlP///////8AGksDRgAAADhJREFUGFcly0ESAEAEA0Ei6/9P3sEcVB8kmrwFyni0bOeyyDpy9JTLEaOhQq7Ongf5FeMhHS/4AVnsAZubxDVmAAAAAElFTkSuQmCC") 100% 50% no-repeat;
+    padding-right: 13px;
+  }
+  /* Remove system outline for focused container */
+  .ui-fancytree.fancytree-container:focus {
+    outline: none;
+  }
+  .ui-fancytree.fancytree-container {
+    border: none;
+  }
+  </style>
+
+  <script type="text/javascript">
+$(function(){
+  // --- Initialize sample trees
+  $("#tree").fancytree({
+    autoActivate: false, // we use scheduleAction()
+    autoCollapse: true, // autoFocus: true,
+    autoScroll: true,
+    clickFolderMode: 3, // expand with single click
+    minExpandLevel: 2,
+    tabindex: "-1", // we don't want the focus frame
+    
+    // scrollParent: null, // use $container
+    focus: function(event, data) {
+      var node = data.node;
+      // Auto-activate focused node after 1 second
+      if(node.data.href){
+        node.scheduleAction("activate", 1000);
+      }
+    },
+    blur: function(event, data) {
+      data.node.scheduleAction("cancel");
+    },
+    activate: function(event, data){
+      var node = data.node,
+        orgEvent = data.originalEvent || {};
+
+      if(node.data.href){
+        window.open(node.data.href, (orgEvent.ctrlKey || orgEvent.metaKey) ? "_blank" : node.data.target);
+      }
+      if( window.parent &&  parent.history && parent.history.pushState ) {
+        // Add #HREF to URL without actually loading content
+        parent.history.pushState({title: node.title}, "", "#" + (node.data.href || ""));
+      }
+    },
+    click: function(event, data){ // allow re-loads
+      var node = data.node,
+        orgEvent = data.originalEvent;
+
+      if(node.isActive() && node.data.href){
+        // data.tree.reactivate();
+        window.open(node.data.href, (orgEvent.ctrlKey || orgEvent.metaKey) ? "_blank" : node.data.target);
+      }
+    }
+  });
+  // On page load, activate node if node.data.href matches the url#href
+  var tree = $(":ui-fancytree").fancytree("getTree"),
+    frameHash = window.parent && window.parent.location.hash;
+
+  if( frameHash ) {
+    frameHash = frameHash.replace("#", "");
+    tree.visit(function(n) {
+      if( n.data.href && n.data.href === frameHash ) {
+        n.setActive();
+        return false; // done: break traversal
+      }
+    });
+  }
+});
+
+</script>
+</head>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Requirejs 循环依赖报模块 undefined 处理方案"
+title:  "【笔记】Requirejs 循环依赖报模块 undefined 处理方案"
 date: 2016-04-07
 categories: javascript
 tags: javascript requirejs

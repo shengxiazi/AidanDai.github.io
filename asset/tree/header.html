@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>关于 &laquo; Aidan's Blog</title> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <meta name="renderer" content="webkit|ie-comp|ie-stand" /> 
+  <meta name="keywords" content="文桥的个人博客,文桥,Aidan Dai, AidanDai, Aidan,Aidan的自留地,文桥的个人网站 
+" /> 
+  <meta name="description" content="Stay hungry, stay foolish! - http://www.aidandai.com(专注前端，记录前端路上的点点滴滴！)
+" /> 
+  <meta name="author" content="Aidan Dai, aidandai@126.com, http://www.aidandai.com/" /> 
+  <meta property="og:url" content="http://www.aidandai.com" /> 
+  <meta property="og:site_name" content="Aidan's Blog" /> 
+  <meta property="og:title" content="关于 &laquo; Aidan's Blog" /> 
+  <meta property="og:description" content="Stay hungry, stay foolish! - http://www.aidandai.com(专注前端，记录前端路上的点点滴滴！)
+" /> 
+  <meta property="og:image" content="http://www.aidandai.com/asset/images/aidan.jpg" /> 
+  <meta property="og:image:type" content="image/jpg" /> 
+  <meta property="og:image:width" content="400" /> 
+  <meta property="og:image:height" content="400" /> 
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" /> 
+  <link rel="stylesheet" href="/asset/style/main.css" /> 
+  <link rel="canonical" href="http://www.aidandai.com/about/" /> 
+  <link rel="alternate" type="application/rss+xml" title="Aidan's Blog" href="http://www.aidandai.com/feed.xml" /> 
+ </head> 
+ <body> 
+  <header class="header"> 
+   <div class="wrapper"> 
+    <a class="site-title" href="/" target="_self">Aidan's Blog</a> 
+    <nav class="site-nav"> 
+     <a class="page-link" href="/" target="_self">首页</a> 
+     <a class="page-link" href="/category/" target="_self">分类</a> 
+     <a class="page-link" href="/archive/" target="_self">归档</a> 
+     <a class="page-link" href="/about/" target="_self">关于</a> 
+     <a class="page-link" href="/tree/" target="_self">Tree</a> 
+    </nav> 
+   </div> 
+  </header> 
+  <script src="/asset/javascript/easybook.js"></script> 
+  <script type="text/javascript">
+    var a = document.querySelectorAll("a"),
+      len = a.length;
+    for(var i=0; i<len; i++){
+      a[i].onclick = function(){
+        console.log(window.frames);
+        window.frames.top.location.href = this.href;
+        return false;
+      }
+    }
+  </script>   
+ </body>
+</html>
