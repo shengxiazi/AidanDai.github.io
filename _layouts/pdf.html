@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} « {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="author" content="Aidan Dai, aidandai@126.com, http://www.aidandai.com/">
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" href="{{ "/asset/style/main.css" | prepend: site.baseurl }}">
+    <style type="text/css">
+      .ballot_box_with_check:before {
+        content: "\2611\ ";
+      }
+      .ballot_box:before {
+        content: "\2610\ ";
+      }
+      .page-content {
+           padding: 0; 
+      }
+      .post .post-header {
+          margin: 0 100px;
+          margin-bottom: 20px;
+          padding: 0;
+      }
+      .page-content .wrapper {
+          position: relative;
+          background: #FAFAFA;
+           box-shadow: none; 
+           outline: none; 
+      }
+      .post .post-content h1, .post .post-content h2, .post .post-content h3 {
+          border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="col-main">
+          <div class="post">
+            {{post}}
+            <header class="post-header">
+              <h1 class="post-title">{{ page.title }}</h1>
+              <p class="post-meta">{{ page.date | date: "%Y-%m-%d" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+            </header>
+
+            <article class="post-content">
+              {{ content | replace: '<p>[ ]', '<p><span class="ballot_box"></span>' | replace: '<p>[x]', '<p><span class="ballot_box_with_check"></span>' | replace: '<li>[ ]', '<li><span class="ballot_box"></span>' | replace: '<li>[x]', '<li><span class="ballot_box_with_check"></span>'  }}
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/asset/javascript/easybook.js"></script>
+  </body>
+</html>
